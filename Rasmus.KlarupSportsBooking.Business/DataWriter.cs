@@ -112,5 +112,13 @@ namespace Rasmus.KlarupSportsBooking.Business
                 throw new ArgumentException("Aktiviteten findes allerede i databasen");
             }
         }
+
+        public void CreateReservation(Activity activity, Union union, DateTime date, int reservationLength)
+        {
+            Reservation reservation = new Reservation { Date = date, ReservationLength = reservationLength };
+            DB.Unions.Where(u => u.ID == union.ID).SingleOrDefault().Reservations.Add(reservation);
+            DB.Activities.Where(a => a.ID == activity.ID).SingleOrDefault().Reservations.Add(reservation);
+            DB.SaveChanges();
+        }
     }
 }
