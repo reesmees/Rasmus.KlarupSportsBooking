@@ -54,7 +54,6 @@
     <Compile Include="Addresses.cs" />
     <Compile Include="Administrators.cs" />
     <Compile Include="Booking.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="E_mails.cs" />
     <Compile Include="KlarupSportsBookingContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

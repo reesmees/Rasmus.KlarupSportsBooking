@@ -18,10 +18,10 @@ namespace Rasmus.KlarupSportsBooking.Business
         public DataHandler()
         {
             DB = new KlarupSportsBookingContext();
-            Reader = new DataReader();
-            Writer = new DataWriter();
-            Updater = new DataUpdater();
-            Deleter = new DataDeleter();
+            Reader = new DataReader(DB);
+            Writer = new DataWriter(DB);
+            Updater = new DataUpdater(DB);
+            Deleter = new DataDeleter(DB);
         }
 
         public DataDeleter Deleter
