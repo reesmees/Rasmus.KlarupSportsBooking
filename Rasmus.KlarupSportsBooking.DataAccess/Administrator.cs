@@ -6,13 +6,13 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Administrators
+    public partial class Administrator
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Administrators()
+        public Administrator()
         {
-            Booking = new HashSet<Booking>();
-            RecurringBooking = new HashSet<RecurringBooking>();
+            Bookings = new HashSet<Booking>();
+            RecurringBookings = new HashSet<RecurringBooking>();
         }
 
         public int ID { get; set; }
@@ -31,9 +31,9 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         public virtual E_mails E_mails { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Booking> Booking { get; set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RecurringBooking> RecurringBooking { get; set; }
+        public virtual ICollection<RecurringBooking> RecurringBookings { get; set; }
     }
 }

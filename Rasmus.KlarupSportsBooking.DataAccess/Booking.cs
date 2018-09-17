@@ -17,8 +17,8 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
 
         public TimeSpan StartTime { get; set; }
 
-        public virtual Administrators Administrators { get; set; }
+        public virtual Administrator Administrator { get; set; }
 
-        public virtual Reservations Reservations { get; set; }
+        public virtual Reservation Reservation { get; set; }
     }
 }

@@ -6,12 +6,12 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class RecurringReservations
+    public partial class Reservation
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RecurringReservations()
+        public Reservation()
         {
-            RecurringBooking = new HashSet<RecurringBooking>();
+            Bookings = new HashSet<Booking>();
         }
 
         public int ID { get; set; }
@@ -21,26 +21,17 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         public int ActivityID { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime StartDate { get; set; }
+        public DateTime Date { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime EndDate { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Weekday { get; set; }
-
-        public TimeSpan StartTime { get; set; }
-
-        public TimeSpan EndTime { get; set; }
+        public int ReservationLength { get; set; }
 
         public bool IsHandled { get; set; }
 
-        public virtual Activities Activities { get; set; }
+        public virtual Activity Activity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RecurringBooking> RecurringBooking { get; set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
 
-        public virtual Unions Unions { get; set; }
+        public virtual Union Union { get; set; }
     }
 }

@@ -12,71 +12,67 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         {
         }
 
-        public virtual DbSet<Activities> Activities { get; set; }
-        public virtual DbSet<Addresses> Addresses { get; set; }
-        public virtual DbSet<Administrators> Administrators { get; set; }
-        public virtual DbSet<Booking> Booking { get; set; }
+        public virtual DbSet<Activity> Activities { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<Administrator> Administrators { get; set; }
+        public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<E_mails> E_mails { get; set; }
-        public virtual DbSet<RecurringBooking> RecurringBooking { get; set; }
-        public virtual DbSet<RecurringReservations> RecurringReservations { get; set; }
-        public virtual DbSet<Reservations> Reservations { get; set; }
-        public virtual DbSet<UnionLeaders> UnionLeaders { get; set; }
-        public virtual DbSet<Unions> Unions { get; set; }
+        public virtual DbSet<RecurringBooking> RecurringBookings { get; set; }
+        public virtual DbSet<RecurringReservation> RecurringReservations { get; set; }
+        public virtual DbSet<Reservation> Reservations { get; set; }
+        public virtual DbSet<UnionLeader> UnionLeaders { get; set; }
+        public virtual DbSet<UnionLogin> UnionLogins { get; set; }
+        public virtual DbSet<Union> Unions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Activities>()
+            modelBuilder.Entity<Activity>()
                 .Property(e => e.ActivityName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Activities>()
+            modelBuilder.Entity<Activity>()
                 .Property(e => e.HallUsage)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Activities>()
+            modelBuilder.Entity<Activity>()
                 .HasMany(e => e.RecurringReservations)
-                .WithRequired(e => e.Activities)
-                .HasForeignKey(e => e.ActivityID)
+                .WithRequired(e => e.Activity)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Activities>()
+            modelBuilder.Entity<Activity>()
                 .HasMany(e => e.Reservations)
-                .WithRequired(e => e.Activities)
-                .HasForeignKey(e => e.ActivityID)
+                .WithRequired(e => e.Activity)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Addresses>()
+            modelBuilder.Entity<Address>()
                 .Property(e => e.StreetName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Addresses>()
+            modelBuilder.Entity<Address>()
                 .Property(e => e.City)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Addresses>()
+            modelBuilder.Entity<Address>()
                 .HasMany(e => e.Unions)
-                .WithRequired(e => e.Addresses)
-                .HasForeignKey(e => e.AddressID)
+                .WithRequired(e => e.Address)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Administrators>()
+            modelBuilder.Entity<Administrator>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Administrators>()
+            modelBuilder.Entity<Administrator>()
                 .Property(e => e.Password)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Administrators>()
-                .HasMany(e => e.Booking)
-                .WithRequired(e => e.Administrators)
-                .HasForeignKey(e => e.AdministratorID)
+            modelBuilder.Entity<Administrator>()
+                .HasMany(e => e.Bookings)
+                .WithRequired(e => e.Administrator)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Administrators>()
-                .HasMany(e => e.RecurringBooking)
-                .WithRequired(e => e.Administrators)
-                .HasForeignKey(e => e.AdministratorID)
+            modelBuilder.Entity<Administrator>()
+                .HasMany(e => e.RecurringBookings)
+                .WithRequired(e => e.Administrator)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<E_mails>()
@@ -95,50 +91,58 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 .HasForeignKey(e => e.E_mailID)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<RecurringReservations>()
+            modelBuilder.Entity<RecurringReservation>()
                 .Property(e => e.Weekday)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<RecurringReservations>()
-                .HasMany(e => e.RecurringBooking)
-                .WithRequired(e => e.RecurringReservations)
-                .HasForeignKey(e => e.RecurringReservationID)
+            modelBuilder.Entity<RecurringReservation>()
+                .HasMany(e => e.RecurringBookings)
+                .WithRequired(e => e.RecurringReservation)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Reservations>()
-                .HasMany(e => e.Booking)
-                .WithRequired(e => e.Reservations)
-                .HasForeignKey(e => e.ReservationID)
+            modelBuilder.Entity<Reservation>()
+                .HasMany(e => e.Bookings)
+                .WithRequired(e => e.Reservation)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<UnionLeaders>()
+            modelBuilder.Entity<UnionLeader>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UnionLeaders>()
+            modelBuilder.Entity<UnionLeader>()
                 .Property(e => e.PhoneNumber)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Unions>()
+            modelBuilder.Entity<UnionLogin>()
+                .Property(e => e.Username)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<UnionLogin>()
+                .Property(e => e.Password)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Union>()
                 .Property(e => e.UnionName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Unions>()
+            modelBuilder.Entity<Union>()
                 .HasMany(e => e.RecurringReservations)
-                .WithRequired(e => e.Unions)
-                .HasForeignKey(e => e.UnionID)
+                .WithRequired(e => e.Union)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Unions>()
+            modelBuilder.Entity<Union>()
                 .HasMany(e => e.Reservations)
-                .WithRequired(e => e.Unions)
-                .HasForeignKey(e => e.UnionID)
+                .WithRequired(e => e.Union)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Unions>()
+            modelBuilder.Entity<Union>()
                 .HasMany(e => e.UnionLeaders)
-                .WithRequired(e => e.Unions)
-                .HasForeignKey(e => e.UnionID)
+                .WithRequired(e => e.Union)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Union>()
+                .HasMany(e => e.UnionLogins)
+                .WithRequired(e => e.Union)
                 .WillCascadeOnDelete(false);
         }
     }

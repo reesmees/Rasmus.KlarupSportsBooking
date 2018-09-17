@@ -15,8 +15,8 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
 
         public int RecurringReservationID { get; set; }
 
-        public virtual Administrators Administrators { get; set; }
+        public virtual Administrator Administrator { get; set; }
 
-        public virtual RecurringReservations RecurringReservations { get; set; }
+        public virtual RecurringReservation RecurringReservation { get; set; }
     }
 }

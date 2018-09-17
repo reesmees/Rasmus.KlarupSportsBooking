@@ -6,13 +6,13 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Activities
+    public partial class Activity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Activities()
+        public Activity()
         {
-            RecurringReservations = new HashSet<RecurringReservations>();
-            Reservations = new HashSet<Reservations>();
+            RecurringReservations = new HashSet<RecurringReservation>();
+            Reservations = new HashSet<Reservation>();
         }
 
         public int ID { get; set; }
@@ -26,9 +26,9 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         public string HallUsage { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RecurringReservations> RecurringReservations { get; set; }
+        public virtual ICollection<RecurringReservation> RecurringReservations { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reservations> Reservations { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }

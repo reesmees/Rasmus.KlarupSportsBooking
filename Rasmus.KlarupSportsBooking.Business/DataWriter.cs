@@ -23,7 +23,7 @@ namespace Rasmus.KlarupSportsBooking.Business
         }
 
 
-        public void CreateUnion(string name, string email, string streetName, int houseNumber, int floor, int zipCode, string city)
+        public void CreateUnion(string name, string username, string password, string email, string streetName, int houseNumber, int floor, int zipCode, string city)
         {
             if (!DB.Unions.Any(u => u.UnionName == name))
             {
@@ -31,9 +31,10 @@ namespace Rasmus.KlarupSportsBooking.Business
                     CreateAddress(streetName, houseNumber, floor, zipCode, city);
                 if (!DB.E_mails.Any(e => e.E_mailAddress == email))
                     CreateEmail(email);
-                Unions unions = new Unions { UnionName = name };
-                DB.E_mails.Where(e => e.E_mailAddress == email).SingleOrDefault().Unions.Add(unions);
-                DB.Addresses.Where(a => a.City == city && a.StreetName == streetName && a.ZipCode == zipCode && a.Floor == floor && a.HouseNumber == houseNumber).SingleOrDefault().Unions.Add(unions);
+                Union union = new Union { UnionName = name };
+                union.UnionLogins.Add(new UnionLogin { Username = username, Password = password });
+                DB.E_mails.Where(e => e.E_mailAddress == email).SingleOrDefault().Unions.Add(union);
+                DB.Addresses.Where(a => a.City == city && a.StreetName == streetName && a.ZipCode == zipCode && a.Floor == floor && a.HouseNumber == houseNumber).SingleOrDefault().Unions.Add(union);
                 DB.SaveChanges();
             }
             else
@@ -59,7 +60,7 @@ namespace Rasmus.KlarupSportsBooking.Business
         {
             if (!DB.Addresses.Any(a => a.City == city && a.StreetName == streetName && a.ZipCode == zipCode && a.Floor == floor && a.HouseNumber == houseNumber))
             {
-                DB.Addresses.Add(new Addresses { StreetName = streetName, City = city, Floor = floor, HouseNumber = houseNumber, ZipCode = zipCode });
+                DB.Addresses.Add(new Address { StreetName = streetName, City = city, Floor = floor, HouseNumber = houseNumber, ZipCode = zipCode });
                 DB.SaveChanges();
             }
             else

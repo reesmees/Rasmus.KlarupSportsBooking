@@ -6,7 +6,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class UnionLeaders
+    public partial class UnionLeader
     {
         public int ID { get; set; }
 
@@ -20,6 +20,6 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [StringLength(20)]
         public string PhoneNumber { get; set; }
 
-        public virtual Unions Unions { get; set; }
+        public virtual Union Union { get; set; }
     }
 }

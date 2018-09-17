@@ -6,32 +6,31 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Reservations
+    public partial class Address
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Reservations()
+        public Address()
         {
-            Booking = new HashSet<Booking>();
+            Unions = new HashSet<Union>();
         }
 
         public int ID { get; set; }
 
-        public int UnionID { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string StreetName { get; set; }
 
-        public int ActivityID { get; set; }
+        public int HouseNumber { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
+        public int Floor { get; set; }
 
-        public int ReservationLength { get; set; }
+        public int ZipCode { get; set; }
 
-        public bool IsHandled { get; set; }
-
-        public virtual Activities Activities { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string City { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Booking> Booking { get; set; }
-
-        public virtual Unions Unions { get; set; }
+        public virtual ICollection<Union> Unions { get; set; }
     }
 }

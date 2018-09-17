@@ -12,8 +12,8 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public E_mails()
         {
-            Administrators = new HashSet<Administrators>();
-            Unions = new HashSet<Unions>();
+            Administrators = new HashSet<Administrator>();
+            Unions = new HashSet<Union>();
         }
 
         public int ID { get; set; }
@@ -24,9 +24,9 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         public string E_mailAddress { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Administrators> Administrators { get; set; }
+        public virtual ICollection<Administrator> Administrators { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Unions> Unions { get; set; }
+        public virtual ICollection<Union> Unions { get; set; }
     }
 }

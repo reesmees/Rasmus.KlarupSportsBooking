@@ -50,18 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities.cs" />
-    <Compile Include="Addresses.cs" />
-    <Compile Include="Administrators.cs" />
+    <Compile Include="Activity.cs" />
+    <Compile Include="Address.cs" />
+    <Compile Include="Administrator.cs" />
     <Compile Include="Booking.cs" />
     <Compile Include="E_mails.cs" />
     <Compile Include="KlarupSportsBookingContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecurringBooking.cs" />
-    <Compile Include="RecurringReservations.cs" />
-    <Compile Include="Reservations.cs" />
-    <Compile Include="UnionLeaders.cs" />
-    <Compile Include="Unions.cs" />
+    <Compile Include="RecurringReservation.cs" />
+    <Compile Include="Reservation.cs" />
+    <Compile Include="Union.cs" />
+    <Compile Include="UnionLeader.cs" />
+    <Compile Include="UnionLogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

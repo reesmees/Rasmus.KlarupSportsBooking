@@ -49,6 +49,7 @@ namespace Rasmus.KlarupSportsBooking.Tests
             string testStreetName = "TestStreet";
             string testEmail = "testEmail";
             string testName = "TestUnionName";
+            
 
             handler.Writer.CreateUnion(testName, testEmail, testStreetName, testHouseNumber, testFloor, testZipCode, testCity);
 
