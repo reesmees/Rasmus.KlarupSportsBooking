@@ -99,5 +99,18 @@ namespace Rasmus.KlarupSportsBooking.Business
             DB.Administrators.Where(a => a.ID == admin.ID).SingleOrDefault().Bookings.Add(booking);
             db.SaveChanges();
         }
+
+        public void CreateActivity(string activityName, string hallUsage)
+        {
+            if (!DB.Activities.Any(a => a.ActivityName == activityName))
+            {
+                DB.Activities.Add(new Activity { ActivityName = activityName, HallUsage = hallUsage });
+                DB.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("Aktiviteten findes allerede i databasen");
+            }
+        }
     }
 }
