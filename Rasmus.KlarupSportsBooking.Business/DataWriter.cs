@@ -90,5 +90,7 @@ namespace Rasmus.KlarupSportsBooking.Business
             DB.E_mails.Where(e => e.E_mailAddress == email).SingleOrDefault().Administrators.Add(new Administrator { Name = name, Password = password });
             DB.SaveChanges();
         }
+
+        
     }
 }

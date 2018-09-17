@@ -31,15 +31,25 @@ namespace Rasmus.KlarupSportsBooking.GUI
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (!handler.DB.Administrators.Any(a => a.E_mails.E_mailAddress == tbxEmail.Text && a.Password == tbxPassword.Text))
+            try
             {
-                MessageBox.Show("Forkert e-mailadresse eller kodeord");
-                tbxEmail.Text = "";
-                tbxPassword.Text = "";
+                if (!handler.DB.Administrators.Any(a => a.E_mails.E_mailAddress == tbxEmail.Text && a.Password == tbxPassword.Text))
+                {
+                    MessageBox.Show("Forkert e-mailadresse eller kodeord");
+                    tbxEmail.Text = "";
+                    tbxPassword.Text = "";
+                }
+                else
+                {
+                    Administrator admin = handler.DB.Administrators.Where(a => a.E_mails.E_mailAddress == tbxEmail.Text && a.Password == tbxPassword.Text).SingleOrDefault();
+                    AdminWindow adminWindow = new AdminWindow(handler, admin);
+                    adminWindow.Show();
+                    this.Close();
+                }
             }
-            else
+            catch (Exception ex)
             {
-
+                MessageBox.Show($"Der skete en fejl{Environment.NewLine}{Environment.NewLine}{ex.Message}");
             }
         }
     }
