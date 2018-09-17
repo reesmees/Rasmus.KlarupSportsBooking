@@ -62,10 +62,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AdminLoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AdminLoginWindow.xaml.cs">
+      <DependentUpon>AdminLoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -106,6 +113,10 @@
     <ProjectReference Include="..\Rasmus.KlarupSportsBooking.Business\Rasmus.KlarupSportsBooking.Business.csproj">
       <Project>{cd2c156d-5d12-41d3-981a-2aef7c9fe4cd}</Project>
       <Name>Rasmus.KlarupSportsBooking.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rasmus.KlarupSportsBooking.DataAccess\Rasmus.KlarupSportsBooking.DataAccess.csproj">
+      <Project>{8b65efb4-35fa-4a8d-af32-e14d346ac0e6}</Project>
+      <Name>Rasmus.KlarupSportsBooking.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

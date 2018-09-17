@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rasmus.KlarupSportsBooking.GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Klarup Halbooking - Vælg afdeling" Height="120" Width="421.6">
     <Grid>
-        
+        <Button x:Name="btnOpenAdminWindow" Content="Administrator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Height="70" Click="btnOpenAdminWindow_Click"/>
+        <Button x:Name="btnOpenUnionWindow" Content="Forening" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top" Width="150" Height="70" Click="btnOpenUnionWindow_Click"/>
+
     </Grid>
 </Window>

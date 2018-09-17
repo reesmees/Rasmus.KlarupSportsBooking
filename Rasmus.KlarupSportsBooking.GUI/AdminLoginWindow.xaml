@@ -1,0 +1,18 @@
+﻿<Window x:Class="Rasmus.KlarupSportsBooking.GUI.AdminLoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rasmus.KlarupSportsBooking.GUI"
+        mc:Ignorable="d"
+        Title="AdminLoginWindow" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Label Content="E-mail:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Width="58" HorizontalContentAlignment="Right"/>
+        <Label Content="Kodeord:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbxEmail" HorizontalAlignment="Left" Height="23" Margin="73,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbxPassword" HorizontalAlignment="Left" Height="23" Margin="73,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnLogin" Content="Log ind" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="183" Click="btnLogin_Click"/>
+
+    </Grid>
+</Window>
