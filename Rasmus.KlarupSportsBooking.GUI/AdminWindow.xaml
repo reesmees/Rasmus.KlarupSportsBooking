@@ -10,15 +10,16 @@
     <Grid>
         <GroupBox Header="Reservationer" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="200">
             <Grid>
-                <DataGrid x:Name="dgrdReservations" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,0,0.2,60.4">
+                <DataGrid x:Name="dgrdReservations" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,0,0,110.4">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Forening" Binding="{Binding Path=Union.UnionName}"/>
                         <DataGridTextColumn Header="Dato" Binding="{Binding Path=Date}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label Content="Starttid:" Margin="0,218,137,35.4"></Label>
-                <TextBox x:Name="tbxReservationStartTime" HorizontalAlignment="Left" Height="23" Margin="58,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
-                <Button x:Name="btnCreateBooking" Content="Opret bookning" HorizontalAlignment="Left" Margin="0,248,0,0" VerticalAlignment="Top" Width="188" Height="30" Click="btnCreateBooking_Click"/>
+                <Label Content="Starttid:" Margin="0,173,137,80.4"></Label>
+                <TextBox x:Name="tbxReservationStartTime" HorizontalAlignment="Left" Height="23" Margin="58,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
+                <Button x:Name="btnCreateBooking" Content="Opret bookning" HorizontalAlignment="Left" Margin="0,203,0,0" VerticalAlignment="Top" Width="188" Height="30" Click="btnCreateBooking_Click"/>
+                <Button x:Name="btnDeleteReservation" Content="Afvis reservation" HorizontalAlignment="Left" Margin="0,238,0,0" VerticalAlignment="Top" Width="188" Height="30" Click="btnDeleteReservation_Click"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Gentagende reservationer" HorizontalAlignment="Left" Height="300" Margin="220,10,0,0" VerticalAlignment="Top" Width="200">

@@ -49,13 +49,18 @@ namespace Rasmus.KlarupSportsBooking.GUI
 
         private void UpdateSources()
         {
-            dgrdReservations.ItemsSource = handler.DB.Reservations.Local;
-            dgrdRecurringReservations.ItemsSource = handler.DB.RecurringReservations.Local;
+            dgrdReservations.ItemsSource = handler.DB.Reservations.Local.Where(r => r.IsHandled == false);
+            dgrdRecurringReservations.ItemsSource = handler.DB.RecurringReservations.Local.Where(r => r.IsHandled == false);
             dgrdBookings.ItemsSource = handler.DB.Bookings.Local;
             dgrdRecurringBookings.ItemsSource = handler.DB.RecurringBookings.Local;
         }
 
         private void btnCreateBooking_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteReservation_Click(object sender, RoutedEventArgs e)
         {
 
         }

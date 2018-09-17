@@ -91,6 +91,13 @@ namespace Rasmus.KlarupSportsBooking.Business
             DB.SaveChanges();
         }
 
-        
+        public void CreateBooking(Reservation reservation, TimeSpan startTime, Administrator admin)
+        {
+            Booking booking = new Booking { StartTime = startTime };
+            DB.Reservations.Where(r => r.ID == reservation.ID).SingleOrDefault().Bookings.Add(booking);
+            DB.Reservations.Where(r => r.ID == reservation.ID).SingleOrDefault().IsHandled = true;
+            DB.Administrators.Where(a => a.ID == admin.ID).SingleOrDefault().Bookings.Add(booking);
+            db.SaveChanges();
+        }
     }
 }
