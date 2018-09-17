@@ -107,5 +107,20 @@ namespace Rasmus.KlarupSportsBooking.Tests
             Assert.AreEqual(emailCount + 1, handler.DB.E_mails.Count());
             Assert.AreEqual(addressCount, handler.DB.Addresses.Count());
         }
+
+        [TestMethod]
+        public void CreateAdministratorWithNewEmailTest()
+        {
+            int administratorCount = handler.DB.Administrators.Count();
+            int emailCount = handler.DB.E_mails.Count();
+            string testName = $"Test Name{administratorCount + 1}";
+            string testPassword = $"TestPassword{administratorCount+1}";
+            string testEmail = $"TestEmail{emailCount + 1}";
+
+            handler.Writer.CreateAdministrator(testEmail, testName, testPassword);
+
+            Assert.AreEqual(administratorCount + 1, handler.DB.Administrators.Count());
+            Assert.AreEqual(emailCount + 1, handler.DB.E_mails.Count());
+        }
     }
 }
