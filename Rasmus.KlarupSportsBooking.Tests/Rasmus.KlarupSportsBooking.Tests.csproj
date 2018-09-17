@@ -56,7 +56,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="DataWriterTestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +67,10 @@
     <ProjectReference Include="..\Rasmus.KlarupSportsBooking.Business\Rasmus.KlarupSportsBooking.Business.csproj">
       <Project>{cd2c156d-5d12-41d3-981a-2aef7c9fe4cd}</Project>
       <Name>Rasmus.KlarupSportsBooking.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rasmus.KlarupSportsBooking.DataAccess\Rasmus.KlarupSportsBooking.DataAccess.csproj">
+      <Project>{8b65efb4-35fa-4a8d-af32-e14d346ac0e6}</Project>
+      <Name>Rasmus.KlarupSportsBooking.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
