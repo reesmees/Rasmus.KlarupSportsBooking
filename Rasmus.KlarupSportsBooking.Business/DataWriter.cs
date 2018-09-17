@@ -32,9 +32,10 @@ namespace Rasmus.KlarupSportsBooking.Business
                 if (!DB.E_mails.Any(e => e.E_mailAddress == email))
                     CreateEmail(email);
                 Union union = new Union { UnionName = name };
-                union.UnionLogins.Add(new UnionLogin { Username = username, Password = password });
                 DB.E_mails.Where(e => e.E_mailAddress == email).SingleOrDefault().Unions.Add(union);
                 DB.Addresses.Where(a => a.City == city && a.StreetName == streetName && a.ZipCode == zipCode && a.Floor == floor && a.HouseNumber == houseNumber).SingleOrDefault().Unions.Add(union);
+                DB.SaveChanges();
+                CreateUnionLogin(username, password, union.UnionName);
                 DB.SaveChanges();
             }
             else
@@ -66,6 +67,19 @@ namespace Rasmus.KlarupSportsBooking.Business
             else
             {
                 throw new ArgumentException("Adressen eksisterer allerede i databasen");
+            }
+        }
+
+        public void CreateUnionLogin(string username, string password, string unionName)
+        {
+            if (!DB.UnionLogins.Any(u => u.Username == username && u.Password == password))
+            {
+                DB.Unions.Where(u => u.UnionName == unionName).SingleOrDefault().UnionLogins.Add(new UnionLogin { Username = username, Password = password });
+                DB.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("Den kombination af brugernavn og kodeord eksisterer allerede");
             }
         }
     }

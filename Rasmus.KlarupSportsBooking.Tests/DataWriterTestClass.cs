@@ -17,7 +17,7 @@ namespace Rasmus.KlarupSportsBooking.Tests
             string testCity = "TestCity";
             int testZipCode = 10;
             int testFloor = 0;
-            int testHouseNumber = 1;
+            int testHouseNumber = addressCount + 1;
             string testStreetName = "TestStreet";
 
             handler.Writer.CreateAddress(testStreetName, testHouseNumber, testFloor, testZipCode, testCity);
@@ -29,7 +29,7 @@ namespace Rasmus.KlarupSportsBooking.Tests
         public void CreateEmailTest()
         {
             int emailCount = handler.DB.E_mails.Count();
-            string testEmail = "testEmail";
+            string testEmail = $"testEmail{emailCount+1}";
 
             handler.Writer.CreateEmail(testEmail);
 
@@ -48,10 +48,12 @@ namespace Rasmus.KlarupSportsBooking.Tests
             int testHouseNumber = 1;
             string testStreetName = "TestStreet";
             string testEmail = "testEmail";
-            string testName = "TestUnionName";
+            string testName = $"TestUnionName{unionCount+1}";
+            string testUsername = $"TestUsername{unionCount+1}";
+            string testPassword = $"TestPassword{unionCount+1}";
             
 
-            handler.Writer.CreateUnion(testName, testEmail, testStreetName, testHouseNumber, testFloor, testZipCode, testCity);
+            handler.Writer.CreateUnion(testName, testUsername, testPassword, testEmail, testStreetName, testHouseNumber, testFloor, testZipCode, testCity);
 
             Assert.AreEqual(unionCount + 1, handler.DB.Unions.Count());
             Assert.AreEqual(emailCount, handler.DB.E_mails.Count());
@@ -67,12 +69,15 @@ namespace Rasmus.KlarupSportsBooking.Tests
             string testCity = "TestCity";
             int testZipCode = 10;
             int testFloor = 0;
-            int testHouseNumber = 2;
+            int testHouseNumber = addressCount + 1;
             string testStreetName = "TestStreet";
             string testEmail = "testEmail";
-            string testName = "TestUnionName2";
+            string testName = $"TestUnionName{unionCount + 1}";
+            string testUsername = $"TestUsername{unionCount + 1}";
+            string testPassword = $"TestPassword{unionCount + 1}";
 
-            handler.Writer.CreateUnion(testName, testEmail, testStreetName, testHouseNumber, testFloor, testZipCode, testCity);
+
+            handler.Writer.CreateUnion(testName, testUsername, testPassword, testEmail, testStreetName, testHouseNumber, testFloor, testZipCode, testCity);
 
             Assert.AreEqual(unionCount + 1, handler.DB.Unions.Count());
             Assert.AreEqual(emailCount, handler.DB.E_mails.Count());
@@ -90,10 +95,13 @@ namespace Rasmus.KlarupSportsBooking.Tests
             int testFloor = 0;
             int testHouseNumber = 1;
             string testStreetName = "TestStreet";
-            string testEmail = "testEmail2";
-            string testName = "TestUnionName3";
+            string testEmail = $"testEmail{emailCount+1}";
+            string testName = $"TestUnionName{unionCount + 1}";
+            string testUsername = $"TestUsername{unionCount + 1}";
+            string testPassword = $"TestPassword{unionCount + 1}";
 
-            handler.Writer.CreateUnion(testName, testEmail, testStreetName, testHouseNumber, testFloor, testZipCode, testCity);
+
+            handler.Writer.CreateUnion(testName, testUsername, testPassword, testEmail, testStreetName, testHouseNumber, testFloor, testZipCode, testCity);
 
             Assert.AreEqual(unionCount + 1, handler.DB.Unions.Count());
             Assert.AreEqual(emailCount + 1, handler.DB.E_mails.Count());
