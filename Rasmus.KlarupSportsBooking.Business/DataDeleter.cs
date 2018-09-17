@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rasmus.KlarupSportsBooking.Business
 {
-    public class Class1
+    public class DataDeleter
     {
     }
 }

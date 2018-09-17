@@ -48,12 +48,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DataDeleter.cs" />
+    <Compile Include="DataHandler.cs" />
+    <Compile Include="DataReader.cs" />
+    <Compile Include="DataUpdater.cs" />
+    <Compile Include="DataWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rasmus.KlarupSportsBooking.DataAccess\Rasmus.KlarupSportsBooking.DataAccess.csproj">
+      <Project>{8b65efb4-35fa-4a8d-af32-e14d346ac0e6}</Project>
+      <Name>Rasmus.KlarupSportsBooking.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
