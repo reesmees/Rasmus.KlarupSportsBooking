@@ -77,5 +77,26 @@ namespace Rasmus.KlarupSportsBooking.Tests
             Assert.AreEqual(emailCount, handler.DB.E_mails.Count());
             Assert.AreEqual(addressCount + 1, handler.DB.Addresses.Count());
         }
+
+        [TestMethod]
+        public void CreateUnionWithNewEmailAndExistingAddressTest()
+        {
+            int unionCount = handler.DB.Unions.Count();
+            int emailCount = handler.DB.E_mails.Count();
+            int addressCount = handler.DB.Addresses.Count();
+            string testCity = "TestCity";
+            int testZipCode = 10;
+            int testFloor = 0;
+            int testHouseNumber = 1;
+            string testStreetName = "TestStreet";
+            string testEmail = "testEmail2";
+            string testName = "TestUnionName3";
+
+            handler.Writer.CreateUnion(testName, testEmail, testStreetName, testHouseNumber, testFloor, testZipCode, testCity);
+
+            Assert.AreEqual(unionCount + 1, handler.DB.Unions.Count());
+            Assert.AreEqual(emailCount + 1, handler.DB.E_mails.Count());
+            Assert.AreEqual(addressCount, handler.DB.Addresses.Count());
+        }
     }
 }
