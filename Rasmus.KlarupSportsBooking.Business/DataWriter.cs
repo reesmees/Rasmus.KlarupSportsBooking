@@ -115,7 +115,7 @@ namespace Rasmus.KlarupSportsBooking.Business
 
         public void CreateReservation(Activity activity, Union union, DateTime date, int reservationLength)
         {
-            Reservation reservation = new Reservation { Date = date, ReservationLength = reservationLength };
+            Reservation reservation = new Reservation { Date = date, ReservationLength = reservationLength, IsHandled = false };
             DB.Unions.Where(u => u.ID == union.ID).SingleOrDefault().Reservations.Add(reservation);
             DB.Activities.Where(a => a.ID == activity.ID).SingleOrDefault().Reservations.Add(reservation);
             DB.SaveChanges();

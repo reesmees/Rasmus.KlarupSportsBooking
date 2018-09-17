@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rasmus.KlarupSportsBooking.Business;
+using Rasmus.KlarupSportsBooking.DataAccess;
 
 namespace Rasmus.KlarupSportsBooking.Tests
 {
@@ -121,6 +122,20 @@ namespace Rasmus.KlarupSportsBooking.Tests
 
             Assert.AreEqual(administratorCount + 1, handler.DB.Administrators.Count());
             Assert.AreEqual(emailCount + 1, handler.DB.E_mails.Count());
+        }
+
+        [TestMethod]
+        public void CreateReservationTest()
+        {
+            int reservationCount = handler.DB.Reservations.Count();
+            Activity activity = handler.DB.Activities.Where(a => a.ActivityName == "Håndboldtræning").SingleOrDefault();
+            Union union = handler.DB.Unions.Where(u => u.UnionName == "TestUnionName1").SingleOrDefault();
+            DateTime date = DateTime.Today;
+            int reservationLength = 90;
+
+            handler.Writer.CreateReservation(activity, union, date, reservationLength);
+
+            Assert.AreEqual(reservationCount + 1, handler.DB.Reservations.Count());
         }
     }
 }
