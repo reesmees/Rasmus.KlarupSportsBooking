@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rasmus.KlarupSportsBooking.GUI", "Rasmus.KlarupSportsBooking.GUI\Rasmus.KlarupSportsBooking.GUI.csproj", "{6F74BB19-30DE-4903-9B8E-F0DF976AA1C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rasmus.KlarupSportsBooking.Business", "Rasmus.KlarupSportsBooking.Business\Rasmus.KlarupSportsBooking.Business.csproj", "{CD2C156D-5D12-41D3-981A-2AEF7C9FE4CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rasmus.KlarupSportsBooking.Server", "Rasmus.KlarupSportsBooking.Server\Rasmus.KlarupSportsBooking.Server.csproj", "{A1F31CBE-B494-433F-B852-7F411DD26E6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rasmus.KlarupSportsBooking.Tests", "Rasmus.KlarupSportsBooking.Tests\Rasmus.KlarupSportsBooking.Tests.csproj", "{AD76B236-1F9F-454A-AB82-F0742A8C79D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{6F74BB19-30DE-4903-9B8E-F0DF976AA1C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F74BB19-30DE-4903-9B8E-F0DF976AA1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F74BB19-30DE-4903-9B8E-F0DF976AA1C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD2C156D-5D12-41D3-981A-2AEF7C9FE4CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD2C156D-5D12-41D3-981A-2AEF7C9FE4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD2C156D-5D12-41D3-981A-2AEF7C9FE4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD2C156D-5D12-41D3-981A-2AEF7C9FE4CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1F31CBE-B494-433F-B852-7F411DD26E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F31CBE-B494-433F-B852-7F411DD26E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F31CBE-B494-433F-B852-7F411DD26E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F31CBE-B494-433F-B852-7F411DD26E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD76B236-1F9F-454A-AB82-F0742A8C79D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD76B236-1F9F-454A-AB82-F0742A8C79D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD76B236-1F9F-454A-AB82-F0742A8C79D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD76B236-1F9F-454A-AB82-F0742A8C79D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
