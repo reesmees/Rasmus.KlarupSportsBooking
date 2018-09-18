@@ -30,6 +30,9 @@ namespace Rasmus.KlarupSportsBooking.Business
             return DB.Unions.OrderByDescending(u => u.Reservations.Count()).FirstOrDefault();
         }
 
-
+        public List<Activity> OrderActivityUsage()
+        {
+            return DB.Activities.OrderByDescending(a => a.Reservations.Count()).ToList();
+        }
     }
 }
