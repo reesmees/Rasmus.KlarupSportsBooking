@@ -51,6 +51,9 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
             get { return hallUsage; }
             set
             {
+                string[] splitValue = value.Split('/');
+                int.TryParse(splitValue[0], out int value1);
+                int.TryParse(splitValue[1], out int value2);
                 if (value == null)
                 {
                     throw new ArgumentNullException("HallUsage må ikke være null");
@@ -62,6 +65,10 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 else if (value.Length > 50)
                 {
                     throw new ArgumentException("HallUsage må ikke være længere end 100 karakterer");
+                }
+                else if (value1 > value2)
+                {
+                    throw new ArgumentException("Værdien efter skråstregen må ikke være større end værdien før skråstregen");
                 }
                 else
                 {

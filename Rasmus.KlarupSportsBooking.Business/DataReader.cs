@@ -26,11 +26,19 @@ namespace Rasmus.KlarupSportsBooking.Business
             set { db = value; }
         }
 
+        /// <summary>
+        /// Method to calculate which union has created the most reservations
+        /// </summary>
+        /// <returns>The union that has created the most reservations</returns>
         public Union CalculateMostActiveUnion()
         {
             return DB.Unions.OrderByDescending(u => u.Reservations.Count()).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Method to order activities by how often they are reserved
+        /// </summary>
+        /// <returns>List of activites in descending order of usage</returns>
         public List<Activity> OrderActivityUsage()
         {
             return DB.Activities.OrderByDescending(a => a.Reservations.Count()).ToList();
@@ -41,28 +49,86 @@ namespace Rasmus.KlarupSportsBooking.Business
             throw new NotImplementedException();            
         }
 
-        public decimal CalculateCoveragePercentageByDay(DateTime date)
+        /// <summary>
+        /// Method to calculate the percentage of opening hours on any given day, that has been booked
+        /// </summary>
+        /// <param name="date">The day on which to calculate</param>
+        /// <returns>The percentage of opening hours on the given day, that has been booked</returns>
+        public double CalculateCoveragePercentageByDay(DateTime date)
         {
-            List<Booking> bookings = DB.Bookings.Where(b => DbFunctions.TruncateTime(b.Reservation.Date) == DbFunctions.TruncateTime(date)).ToList();
-            decimal reservedMinutes = 0;
-            decimal reservedPercentage = 0;
-            bookings.OrderBy(b => b.Reservation.ReservationLength).OrderBy(b => b.StartTime);
-            TimeSpan bookingEndTime;
-            while (bookings.Count() > 0)
-            {
-                reservedMinutes += bookings[0].Reservation.ReservationLength;
-                bookingEndTime = bookings[0].EndTime;
-                bookings = bookings.Where(b => b.StartTime > bookingEndTime).ToList();
-            }
+            double unreservedMinutes = CalculateNonBookedMinutesByDay(date);
+            double openMinutes = CalculateTotalMinutesOpenByDay(date);
+            double reservedMinutes = openMinutes - unreservedMinutes;
+            double reservedPercentage = reservedMinutes / openMinutes * 100;
+
+            return reservedPercentage;
+        }
+
+        /// <summary>
+        /// Method to calculate the amount of minutes within operating hours on any given day, that are not booked.
+        /// </summary>
+        /// <param name="date">The day to calculate nonbooked minutes on</param>
+        /// <returns>The amount of minutes within operating hours on the given day, that are not booked</returns>
+        public double CalculateNonBookedMinutesByDay(DateTime date)
+        {
+            List<Booking> bookings = DB.Bookings.Where(b => DbFunctions.TruncateTime(b.Reservation.Date) == DbFunctions.TruncateTime(date)).OrderBy(b => b.StartTime).ToList();
+            double unreservedMinutes = 0;
+            TimeSpan openingTime;
+            TimeSpan closingTime;
             if (date.Date.DayOfWeek == DayOfWeek.Saturday || date.Date.DayOfWeek == DayOfWeek.Sunday)
             {
-                reservedPercentage = reservedMinutes / 720 * 100;
+                openingTime = new TimeSpan(09, 00, 00);
+                closingTime = new TimeSpan(21, 00, 00);
             }
             else
             {
-                reservedPercentage = reservedMinutes / 840 * 100;
+                openingTime = new TimeSpan(08, 00, 00);
+                closingTime = new TimeSpan(22, 00, 00);
             }
-            return reservedPercentage;
+            if (bookings.Count() == 0)
+            {
+                unreservedMinutes += (closingTime - openingTime).TotalMinutes;
+            }
+            else if (bookings.Count() == 1)
+            {
+                unreservedMinutes += (bookings[0].StartTime - openingTime).TotalMinutes;
+                unreservedMinutes += (closingTime - bookings[0].EndTime).TotalMinutes;
+            }
+            else if (bookings.Count() > 1)
+            {
+                unreservedMinutes += (bookings[0].StartTime - openingTime).TotalMinutes;
+                for (int i = 1; i < bookings.Count() - 1; i++)
+                {
+                    if (bookings[i-1].EndTime < bookings[i].StartTime)
+                    {
+                        unreservedMinutes += (bookings[i].StartTime - bookings[i - 1].EndTime).TotalMinutes;
+                    }
+                }
+                unreservedMinutes += (closingTime - bookings.Max().EndTime).TotalMinutes;
+            }
+            return unreservedMinutes;
+        }
+
+        /// <summary>
+        /// Method to calculate how many minutes the hall is open for on any given day
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public double CalculateTotalMinutesOpenByDay(DateTime date)
+        {
+            TimeSpan openingTime;
+            TimeSpan closingTime;
+            if (date.Date.DayOfWeek == DayOfWeek.Saturday || date.Date.DayOfWeek == DayOfWeek.Sunday)
+            {
+                openingTime = new TimeSpan(09, 00, 00);
+                closingTime = new TimeSpan(21, 00, 00);
+            }
+            else
+            {
+                openingTime = new TimeSpan(08, 00, 00);
+                closingTime = new TimeSpan(22, 00, 00);
+            }
+            return (closingTime - openingTime).TotalMinutes;
         }
     }
 }

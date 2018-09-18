@@ -28,7 +28,7 @@ namespace Rasmus.KlarupSportsBooking.Tests
                     loop = false;
                 }
             }
-            decimal beforeCoveragePercentage = handler.Reader.CalculateCoveragePercentageByDay(date);
+            double beforeCoveragePercentage = handler.Reader.CalculateCoveragePercentageByDay(date);
             List<Administrator> admins = handler.DB.Administrators.ToList();
             Activity activity = handler.DB.Activities.ToList()[0];
             Union union = handler.DB.Unions.ToList()[0];
@@ -37,9 +37,39 @@ namespace Rasmus.KlarupSportsBooking.Tests
             Reservation reservation = handler.DB.Reservations.Where(r => DbFunctions.TruncateTime(r.Date) == DbFunctions.TruncateTime(date)).SingleOrDefault();
             handler.Writer.CreateBooking(reservation, new TimeSpan(09, 00, 00), admins[0]);
 
-            decimal afterCoveragePercentage = handler.Reader.CalculateCoveragePercentageByDay(date);
+            double afterCoveragePercentage = handler.Reader.CalculateCoveragePercentageByDay(date);
 
             Assert.AreNotEqual(beforeCoveragePercentage, afterCoveragePercentage);
+        }
+
+        [TestMethod]
+        public void CalculateUnreservedMinutesByDayTest()
+        {
+            DateTime date = DateTime.Today;
+            bool loop = true;
+            while (loop)
+            {
+                if (handler.DB.Bookings.Any(b => DbFunctions.TruncateTime(b.Reservation.Date) == DbFunctions.TruncateTime(date)))
+                {
+                    date = date.AddDays(1);
+                }
+                else
+                {
+                    loop = false;
+                }
+            }
+            double beforeUnreservedMinutes = handler.Reader.CalculateNonBookedMinutesByDay(date);
+            List<Administrator> admins = handler.DB.Administrators.ToList();
+            Activity activity = handler.DB.Activities.ToList()[0];
+            Union union = handler.DB.Unions.ToList()[0];
+            int reservationLength = 90;
+            handler.Writer.CreateReservation(activity, union, date, reservationLength);
+            Reservation reservation = handler.DB.Reservations.Where(r => DbFunctions.TruncateTime(r.Date) == DbFunctions.TruncateTime(date)).SingleOrDefault();
+            handler.Writer.CreateBooking(reservation, new TimeSpan(09, 00, 00), admins[0]);
+
+            double afterUnreservedMinutes = handler.Reader.CalculateNonBookedMinutesByDay(date);
+
+            Assert.AreEqual(beforeUnreservedMinutes - 90, afterUnreservedMinutes);
         }
     }
 }
