@@ -39,5 +39,29 @@ namespace Rasmus.KlarupSportsBooking.Business
         {
             throw new NotImplementedException();            
         }
+
+        public decimal CalculateCoveragePercentageByDay(DateTime date)
+        {
+            List<Booking> bookings = DB.Bookings.Where(b => b.Reservation.Date.Date == date.Date).ToList();
+            decimal reservedMinutes = 0;
+            decimal reservedPercentage = 0;
+            bookings.OrderBy(b => b.Reservation.ReservationLength).OrderBy(b => b.StartTime);
+            TimeSpan bookingEndTime;
+            while (bookings.Count() > 0)
+            {
+                reservedMinutes += bookings[0].Reservation.ReservationLength;
+                bookingEndTime = bookings[0].EndTime;
+                bookings = bookings.Where(b => b.StartTime > bookingEndTime).ToList();
+            }
+            if (date.Date.DayOfWeek == DayOfWeek.Saturday || date.Date.DayOfWeek == DayOfWeek.Sunday)
+            {
+                reservedPercentage = reservedMinutes / 720 * 100;
+            }
+            else
+            {
+                reservedPercentage = reservedMinutes / 840 * 100;
+            }
+            return reservedPercentage;
+        }
     }
 }
