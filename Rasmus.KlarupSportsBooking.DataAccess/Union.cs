@@ -26,7 +26,29 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
 
         [Required]
         [StringLength(255)]
-        public string UnionName { get; set; }
+        public string UnionName
+        {
+            get { return UnionName; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("UnionName må ikke være null");
+                }
+                else if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("UnionName må ikke være udelukkende whitespace");
+                }
+                else if (value.Length > 255)
+                {
+                    throw new ArgumentException("UnionName må ikke være længere end 255 karakterer");
+                }
+                else
+                {
+                    UnionName = value;
+                }
+            }
+        }
 
         public virtual Address Address { get; set; }
 
