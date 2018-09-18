@@ -149,7 +149,8 @@ namespace Rasmus.KlarupSportsBooking.Business
         {
             if (!reservation.IsHandled)
             {
-                Booking booking = new Booking { StartTime = startTime };
+                TimeSpan endTime = startTime + TimeSpan.FromMinutes(reservation.ReservationLength);
+                Booking booking = new Booking { StartTime = startTime, EndTime = endTime };
                 DB.Reservations.Where(r => r.ID == reservation.ID).SingleOrDefault().Bookings.Add(booking);
                 DB.Reservations.Where(r => r.ID == reservation.ID).SingleOrDefault().IsHandled = true;
                 DB.Administrators.Where(a => a.ID == admin.ID).SingleOrDefault().Bookings.Add(booking);
