@@ -15,6 +15,9 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
             RecurringBookings = new HashSet<RecurringBooking>();
         }
 
+        private string name;
+        private string password;
+
         public int ID { get; set; }
 
         [Column("E-mailID")]
@@ -24,7 +27,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [StringLength(100)]
         public string Name
         {
-            get { return Name; }
+            get { return name; }
             set
             {
                 if (value == null)
@@ -41,7 +44,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    Name = value;
+                    name = value;
                 }
             }
         }
@@ -50,7 +53,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [StringLength(100)]
         public string Password
         {
-            get { return Password; }
+            get { return password; }
             set
             {
                 if (value == null)
@@ -67,7 +70,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    Password = value;
+                    password = value;
                 }
             }
         }

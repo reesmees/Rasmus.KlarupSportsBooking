@@ -137,7 +137,7 @@ namespace Rasmus.KlarupSportsBooking.Tests
             int reservationLength = 90;
 
             handler.Writer.CreateReservation(activity, union, date, reservationLength);
-            
+
             Assert.AreEqual(reservationCount + 1, handler.DB.Reservations.Count());
         }
     }

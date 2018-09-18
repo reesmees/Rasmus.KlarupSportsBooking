@@ -32,10 +32,6 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 {
                     throw new ArgumentNullException("Date må ikke være null");
                 }
-                else if (value < DateTime.Today)
-                {
-                    throw new ArgumentOutOfRangeException("Du kan ikke reservere i fortiden");
-                }
                 else
                 {
                     date = value;
