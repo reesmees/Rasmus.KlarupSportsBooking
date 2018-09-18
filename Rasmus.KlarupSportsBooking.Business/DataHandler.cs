@@ -7,6 +7,9 @@ using Rasmus.KlarupSportsBooking.DataAccess;
 
 namespace Rasmus.KlarupSportsBooking.Business
 {
+    /// <summary>
+    /// Class used to access the database
+    /// </summary>
     public class DataHandler
     {
         private KlarupSportsBookingContext db;

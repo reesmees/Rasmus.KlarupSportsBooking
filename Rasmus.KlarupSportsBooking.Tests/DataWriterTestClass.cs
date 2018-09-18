@@ -6,6 +6,9 @@ using Rasmus.KlarupSportsBooking.DataAccess;
 
 namespace Rasmus.KlarupSportsBooking.Tests
 {
+    /// <summary>
+    /// Class for testing the DataWriter class
+    /// </summary>
     [TestClass]
     public class DataWriterTestClass
     {
