@@ -27,7 +27,7 @@
         </GroupBox>
         <GroupBox Header="Bookninger" HorizontalAlignment="Left" Height="300" Margin="220,10,0,0" VerticalAlignment="Top" Width="200">
             <Grid>
-                <DataGrid x:Name="dgrdBookings" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid x:Name="dgrdBookings" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,0,0.2,110.4">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Forening" Binding="{Binding Path=Reservation.Union.UnionName}"/>
                         <DataGridTextColumn Header="Aktivitet" Binding="{Binding Path=Reservation.Activity.ActivityName}"/>
@@ -37,6 +37,11 @@
                         <DataGridTextColumn Header="Administrator" Binding="{Binding Path=Administrator.Name}"/>
                     </DataGrid.Columns>
                 </DataGrid>
+                <Label Content="Startdato:" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top"/>
+                <Label Content="Slutdato:" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top" Width="61" HorizontalContentAlignment="Right"/>
+                <DatePicker x:Name="dpckStartDate" HorizontalAlignment="Left" Margin="76,175,0,0" VerticalAlignment="Top" Width="32"/>
+                <DatePicker x:Name="dpckEndDate" HorizontalAlignment="Left" Margin="76,205,0,0" VerticalAlignment="Top" Width="32"/>
+                <Button x:Name="btnCalculateCoveragePercentage" Content="Udregn belægningsprocent" HorizontalAlignment="Left" Margin="0,238,0,0" VerticalAlignment="Top" Width="188" Height="30" Click="btnCalculateCoveragePercentage_Click"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Gentagende reservationer" HorizontalAlignment="Left" Height="300" Margin="430,10,0,0" VerticalAlignment="Top" Width="200">

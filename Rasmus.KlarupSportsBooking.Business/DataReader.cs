@@ -162,7 +162,7 @@ namespace Rasmus.KlarupSportsBooking.Business
         public List<DateTime> FindDatesInDateRange(DateTime startDate, DateTime endDate)
         {
             List<DateTime> dateRange = new List<DateTime>();
-            for (DateTime day = startDate; day.Date <= endDate.Date; day.AddDays(1))
+            for (DateTime day = startDate; day.Date < endDate.Date; day.AddDays(1))
             {
                 dateRange.Add(day);
             }

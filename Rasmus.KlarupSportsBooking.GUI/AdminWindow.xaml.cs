@@ -116,5 +116,35 @@ namespace Rasmus.KlarupSportsBooking.GUI
                 MessageBox.Show($"Der skete en fejl{Environment.NewLine}{Environment.NewLine}{ex.Message}");
             }
         }
+
+        private void btnCalculateCoveragePercentage_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                double coveragePercent = 0;
+                if (dpckStartDate.SelectedDate == null)
+                {
+                    MessageBox.Show("Vælg en startdato");
+                }
+                else if (dpckEndDate.SelectedDate == null)
+                {
+                    coveragePercent = handler.Reader.CalculateCoveragePercentageByDay((DateTime)dpckStartDate.SelectedDate);
+                    MessageBox.Show($"Belægningsprocenten på {dpckStartDate.SelectedDate} er {coveragePercent}%", "Resultat");
+                }
+                else if (dpckEndDate.SelectedDate < dpckStartDate.SelectedDate)
+                {
+                    MessageBox.Show("Slutdato kan ikke være før startdato");
+                }
+                else
+                {
+                    coveragePercent = handler.Reader.CalculateCoveragePercentageByDateRange((DateTime)dpckStartDate.SelectedDate, (DateTime)dpckEndDate.SelectedDate);
+                    MessageBox.Show($"Belægningsprocenten mellem {dpckStartDate.SelectedDate} og {dpckEndDate.SelectedDate} er {coveragePercent}%", "Resultat");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Der skete en fejl{Environment.NewLine}{Environment.NewLine}{ex.Message}");
+            }
+        }
     }
 }
