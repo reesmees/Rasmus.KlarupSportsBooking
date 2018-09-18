@@ -57,7 +57,37 @@ namespace Rasmus.KlarupSportsBooking.GUI
 
         private void btnCreateBooking_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if (dgrdReservations.SelectedItem != null)
+                {
+                    if (!string.IsNullOrWhiteSpace(tbxReservationStartTime.Text))
+                    {
+                        if (TimeSpan.TryParse(tbxReservationStartTime.Text, out TimeSpan startTime))
+                        {
+                            Reservation reservation = (Reservation)dgrdReservations.SelectedItem;
+                            handler.Writer.CreateBooking(reservation, startTime, admin);
+                            UpdateSources();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Kunne ikke parse starttiden");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Indtast en starttid");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Vælg en reservation at godkende");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Der skete en fejl{Environment.NewLine}{Environment.NewLine}{ex.Message}");
+            }
         }
 
         private void btnDeleteReservation_Click(object sender, RoutedEventArgs e)
