@@ -14,13 +14,19 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
             Unions = new HashSet<Union>();
         }
 
+        private string streetName;
+        private int houseNumber;
+        private int floor;
+        private int zipCode;
+        private string city;
+
         public int ID { get; set; }
 
         [Required]
         [StringLength(100)]
         public string StreetName
         {
-            get { return StreetName; }
+            get { return streetName; }
             set
             {
                 if (value == null)
@@ -37,13 +43,13 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    StreetName = value;
+                    streetName = value;
                 }
             }
         }
 
         public int HouseNumber {
-            get { return HouseNumber; }
+            get { return houseNumber; }
             set
             {
                 if (value < 1)
@@ -52,14 +58,14 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    HouseNumber = value;
+                    houseNumber = value;
                 }
             }
         }
 
         public int Floor
         {
-            get { return Floor; }
+            get { return floor; }
             set
             {
                 if (value < 0)
@@ -68,14 +74,14 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    Floor = value;
+                    floor = value;
                 }
             }
         }
 
         public int ZipCode
         {
-            get { return ZipCode; }
+            get { return zipCode; }
             set
             {
                 if (value < 1)
@@ -84,7 +90,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    ZipCode = value;
+                    zipCode = value;
                 }
             }
         }
@@ -93,7 +99,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [StringLength(100)]
         public string City
         {
-            get { return City; }
+            get { return city; }
             set
             {
                 if (value == null)
@@ -110,7 +116,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    City = value;
+                    city = value;
                 }
             }
         }

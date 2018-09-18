@@ -8,6 +8,9 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
 
     public partial class UnionLogin
     {
+        private string username;
+        private string password;
+
         public int ID { get; set; }
 
         public int UnionID { get; set; }
@@ -16,7 +19,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [StringLength(50)]
         public string Username
         {
-            get { return Username; }
+            get { return username; }
             set
             {
                 if (value == null)
@@ -33,7 +36,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    Username = value;
+                    username = value;
                 }
             }
         }
@@ -42,7 +45,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [StringLength(50)]
         public string Password
         {
-            get { return Password; }
+            get { return password; }
             set
             {
                 if (value == null)
@@ -59,7 +62,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    Password = value;
+                    password = value;
                 }
             }
         }

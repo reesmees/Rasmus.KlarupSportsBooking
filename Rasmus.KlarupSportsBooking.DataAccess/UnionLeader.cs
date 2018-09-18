@@ -8,6 +8,9 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
 
     public partial class UnionLeader
     {
+        private string name;
+        private string phoneNumber;
+
         public int ID { get; set; }
 
         public int UnionID { get; set; }
@@ -16,7 +19,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [StringLength(100)]
         public string Name
         {
-            get { return Name; }
+            get { return name; }
             set
             {
                 if (value == null)
@@ -33,7 +36,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    Name = value;
+                    name = value;
                 }
             }
         }
@@ -42,7 +45,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [StringLength(20)]
         public string PhoneNumber
         {
-            get { return PhoneNumber; }
+            get { return phoneNumber; }
             set
             {
                 if (value == null)
@@ -59,7 +62,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    PhoneNumber = value;
+                    phoneNumber = value;
                 }
             }
         }

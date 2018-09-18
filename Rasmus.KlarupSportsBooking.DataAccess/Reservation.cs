@@ -14,6 +14,9 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
             Bookings = new HashSet<Booking>();
         }
 
+        private DateTime date;
+        private int reservationLength;
+
         public int ID { get; set; }
 
         public int UnionID { get; set; }
@@ -22,7 +25,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
 
         [Column(TypeName = "date")]
         public DateTime Date {
-            get { return Date; }
+            get { return date; }
             set
             {
                 if (value == null)
@@ -35,13 +38,13 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    Date = value;
+                    date = value;
                 }
             }
         }
 
         public int ReservationLength {
-            get { return ReservationLength; }
+            get { return reservationLength; }
             set
             {
                 if (value < 30)
@@ -54,7 +57,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    ReservationLength = value;
+                    reservationLength = value;
                 }
             }
         }

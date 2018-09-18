@@ -16,6 +16,8 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
             Unions = new HashSet<Union>();
         }
 
+        private string e_mailAddress;
+
         public int ID { get; set; }
 
         [Column("E-mailAddress")]
@@ -23,7 +25,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [StringLength(50)]
         public string E_mailAddress
         {
-            get { return E_mailAddress; }
+            get { return e_mailAddress; }
             set
             {
                 if (value == null)
@@ -40,7 +42,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    E_mailAddress = value;
+                    e_mailAddress = value;
                 }
             }
         }

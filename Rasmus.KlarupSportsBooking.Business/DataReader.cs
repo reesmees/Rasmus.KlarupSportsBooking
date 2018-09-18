@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace Rasmus.KlarupSportsBooking.Business
 
         public decimal CalculateCoveragePercentageByDay(DateTime date)
         {
-            List<Booking> bookings = DB.Bookings.Where(b => b.Reservation.Date.Date == date.Date).ToList();
+            List<Booking> bookings = DB.Bookings.Where(b => DbFunctions.TruncateTime(b.Reservation.Date) == DbFunctions.TruncateTime(date)).ToList();
             decimal reservedMinutes = 0;
             decimal reservedPercentage = 0;
             bookings.OrderBy(b => b.Reservation.ReservationLength).OrderBy(b => b.StartTime);

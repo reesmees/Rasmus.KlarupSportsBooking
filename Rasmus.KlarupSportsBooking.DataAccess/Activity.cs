@@ -15,12 +15,15 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
             Reservations = new HashSet<Reservation>();
         }
 
+        private string activityName;
+        private string hallUsage;
+
         public int ID { get; set; }
 
         [Required]
         [StringLength(100)]
         public string ActivityName {
-            get { return ActivityName; }
+            get { return activityName; }
             set {
                 if (value == null)
                 {
@@ -36,7 +39,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    ActivityName = value;
+                    activityName = value;
                 }
             }
         }
@@ -45,7 +48,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [StringLength(50)]
         public string HallUsage
         {
-            get { return HallUsage; }
+            get { return hallUsage; }
             set
             {
                 if (value == null)
@@ -62,7 +65,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 }
                 else
                 {
-                    HallUsage = value;
+                    hallUsage = value;
                 }
             }
         }
