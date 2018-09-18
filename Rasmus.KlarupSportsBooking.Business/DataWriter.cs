@@ -150,6 +150,28 @@ namespace Rasmus.KlarupSportsBooking.Business
             if (!reservation.IsHandled)
             {
                 TimeSpan endTime = startTime + TimeSpan.FromMinutes(reservation.ReservationLength);
+                if (reservation.Date.DayOfWeek == DayOfWeek.Saturday || reservation.Date.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    if (startTime < new TimeSpan(09,00,00))
+                    {
+                        throw new ArgumentOutOfRangeException("Starttid i weekenden må ikke være før 09:00");
+                    }
+                    else if (endTime > new TimeSpan(21,00,00))
+                    {
+                        throw new ArgumentOutOfRangeException("Sluttid i weekenden må ikke være efter 21:00");
+                    }
+                }
+                else
+                {
+                    if (startTime < new TimeSpan(08,00,00))
+                    {
+                        throw new ArgumentOutOfRangeException("Starttid på en hverdag må ikke være før 08:00");
+                    }
+                    else if (endTime > new TimeSpan(22,00,00))
+                    {
+                        throw new ArgumentOutOfRangeException("Sluttid på en hverdag må ikke være efter 22:00");
+                    }
+                }
                 Booking booking = new Booking { StartTime = startTime, EndTime = endTime };
                 DB.Reservations.Where(r => r.ID == reservation.ID).SingleOrDefault().Bookings.Add(booking);
                 DB.Reservations.Where(r => r.ID == reservation.ID).SingleOrDefault().IsHandled = true;
