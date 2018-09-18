@@ -22,11 +22,55 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
 
         [Required]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return Name; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Name må ikke være null");
+                }
+                else if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Name må ikke være udelukkende whitespace");
+                }
+                else if (value.Length > 100)
+                {
+                    throw new ArgumentException("Name må ikke være længere end 100 karakterer");
+                }
+                else
+                {
+                    Name = value;
+                }
+            }
+        }
 
         [Required]
         [StringLength(100)]
-        public string Password { get; set; }
+        public string Password
+        {
+            get { return Password; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Password må ikke være null");
+                }
+                else if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Password må ikke være udelukkende whitespace");
+                }
+                else if (value.Length > 100)
+                {
+                    throw new ArgumentException("Password må ikke være længere end 100 karakterer");
+                }
+                else
+                {
+                    Password = value;
+                }
+            }
+        }
 
         public virtual E_mails E_mails { get; set; }
 
