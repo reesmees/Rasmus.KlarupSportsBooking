@@ -25,19 +25,24 @@
                 <Button x:Name="btnDeleteReservation" Content="Afvis reservation" HorizontalAlignment="Left" Margin="0,238,0,0" VerticalAlignment="Top" Width="188" Height="30" Click="btnDeleteReservation_Click"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Gentagende reservationer" HorizontalAlignment="Left" Height="300" Margin="220,10,0,0" VerticalAlignment="Top" Width="200">
-            <Grid>
-                <DataGrid x:Name="dgrdRecurringReservations" AutoGenerateColumns="False" IsReadOnly="True">
-                    <DataGrid.Columns>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </GroupBox>
-        <GroupBox Header="Bookninger" HorizontalAlignment="Left" Height="300" Margin="430,10,0,0" VerticalAlignment="Top" Width="200">
+        <GroupBox Header="Bookninger" HorizontalAlignment="Left" Height="300" Margin="220,10,0,0" VerticalAlignment="Top" Width="200">
             <Grid>
                 <DataGrid x:Name="dgrdBookings" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Forening" Binding="{Binding Path=Reservation.Union.UnionName}"/>
+                        <DataGridTextColumn Header="Aktivitet" Binding="{Binding Path=Reservation.Activity.ActivityName}"/>
+                        <DataGridTextColumn Header="Pladsoptag" Binding="{Binding Path=Reservation.Activity.HallUsage}"/>
+                        <DataGridTextColumn Header="Starttid" Binding="{Binding Path=StartTime}"/>
+                        <DataGridTextColumn Header="Sluttid" Binding="{Binding Path=EndTime}"/>
+                        <DataGridTextColumn Header="Administrator" Binding="{Binding Path=Administrator.Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Gentagende reservationer" HorizontalAlignment="Left" Height="300" Margin="430,10,0,0" VerticalAlignment="Top" Width="200">
+            <Grid>
+                <DataGrid x:Name="dgrdRecurringReservations" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
