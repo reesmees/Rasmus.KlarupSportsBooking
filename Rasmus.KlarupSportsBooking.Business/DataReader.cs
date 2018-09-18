@@ -24,5 +24,12 @@ namespace Rasmus.KlarupSportsBooking.Business
             get { return db; }
             set { db = value; }
         }
+
+        public Union CalculateMostActiveUnion()
+        {
+            return DB.Unions.OrderByDescending(u => u.Reservations.Count()).FirstOrDefault();
+        }
+
+
     }
 }
