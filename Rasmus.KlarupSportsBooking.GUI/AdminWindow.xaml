@@ -13,7 +13,10 @@
                 <DataGrid x:Name="dgrdReservations" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,0,0,110.4">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Forening" Binding="{Binding Path=Union.UnionName}"/>
-                        <DataGridTextColumn Header="Dato" Binding="{Binding Path=Date}"/>
+                        <DataGridTextColumn Header="Dato" Binding="{Binding Path=Date, StringFormat=dd.MM.yy}"/>
+                        <DataGridTextColumn Header="Aktivitet" Binding="{Binding Path=Activity.ActivityName}"/>
+                        <DataGridTextColumn Header="Pladsoptage" Binding="{Binding Path=Activity.HallUsage}"/>
+                        <DataGridTextColumn Header="Reservationslængde" Binding="{Binding Path=ReservationLength}"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <Label Content="Starttid:" Margin="0,173,137,80.4"></Label>
