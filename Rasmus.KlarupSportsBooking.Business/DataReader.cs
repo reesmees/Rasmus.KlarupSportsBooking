@@ -130,5 +130,43 @@ namespace Rasmus.KlarupSportsBooking.Business
             }
             return (closingTime - openingTime).TotalMinutes;
         }
+
+        /// <summary>
+        /// Method to calculate the percentage of time between two dates that are booked
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        public double CalculateCoveragePercentageByDateRange(DateTime startDate, DateTime endDate)
+        {
+            double unreservedMinutes = 0;
+            double openMinutes = 0;
+            foreach (DateTime day in FindDatesInDateRange(startDate, endDate))
+            {
+                openMinutes += CalculateTotalMinutesOpenByDay(day);
+                unreservedMinutes += CalculateNonBookedMinutesByDay(day);
+            }
+            double reservedMinutes = openMinutes - unreservedMinutes;
+            double reservedPercentage = reservedMinutes / openMinutes * 100;
+            
+
+            return reservedPercentage;
+        }
+
+        /// <summary>
+        /// Method to return a list of all days between two dates
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        public List<DateTime> FindDatesInDateRange(DateTime startDate, DateTime endDate)
+        {
+            List<DateTime> dateRange = new List<DateTime>();
+            for (DateTime day = startDate; day.Date <= endDate.Date; day.AddDays(1))
+            {
+                dateRange.Add(day);
+            }
+            return dateRange;
+        }
     }
 }
