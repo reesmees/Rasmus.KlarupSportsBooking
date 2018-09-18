@@ -34,5 +34,10 @@ namespace Rasmus.KlarupSportsBooking.Business
         {
             return DB.Activities.OrderByDescending(a => a.Reservations.Count()).ToList();
         }
+
+        public DateTime FindNextAvailableTime()
+        {
+            throw new NotImplementedException();            
+        }
     }
 }
