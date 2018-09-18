@@ -62,7 +62,29 @@ namespace Rasmus.KlarupSportsBooking.GUI
 
         private void btnDeleteReservation_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if (dgrdReservations.SelectedItem != null)
+                {
+                    MessageBoxResult result = MessageBox.Show("Er du sikker på du vil afvise den valgte reservation?", "Bekræft afvisning", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        Reservation reservation = (Reservation)dgrdReservations.SelectedItem;
+                        reservation.IsHandled = true;
+                        handler.DB.SaveChanges();
+                        UpdateSources();
+                        MessageBox.Show("Reservation afvist");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Vælg en reservation at afvise");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Der skete en fejl{Environment.NewLine}{Environment.NewLine}{ex.Message}");
+            }
         }
     }
 }
