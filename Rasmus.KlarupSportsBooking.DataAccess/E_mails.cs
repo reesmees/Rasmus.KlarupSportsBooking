@@ -21,7 +21,29 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         [Column("E-mailAddress")]
         [Required]
         [StringLength(50)]
-        public string E_mailAddress { get; set; }
+        public string E_mailAddress
+        {
+            get { return E_mailAddress; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("E_mailAddress må ikke være null");
+                }
+                else if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("E_mailAddress må ikke være udelukkende whitespace");
+                }
+                else if (value.Length > 50)
+                {
+                    throw new ArgumentException("E_mailAddress må ikke være længere end 50 karakterer");
+                }
+                else
+                {
+                    E_mailAddress = value;
+                }
+            }
+        }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Administrator> Administrators { get; set; }

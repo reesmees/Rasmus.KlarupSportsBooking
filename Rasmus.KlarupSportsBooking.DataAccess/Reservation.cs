@@ -21,9 +21,43 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         public int ActivityID { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
+        public DateTime Date {
+            get { return Date; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Date må ikke være null");
+                }
+                else if (value < DateTime.Today)
+                {
+                    throw new ArgumentOutOfRangeException("Du kan ikke reservere i fortiden");
+                }
+                else
+                {
+                    Date = value;
+                }
+            }
+        }
 
-        public int ReservationLength { get; set; }
+        public int ReservationLength {
+            get { return ReservationLength; }
+            set
+            {
+                if (value < 30)
+                {
+                    throw new ArgumentOutOfRangeException("Du kan ikke reservere en tid på under 30 minutter");
+                }
+                else if (value > 300)
+                {
+                    throw new ArgumentOutOfRangeException("Du kan ikke reservere en tid på over 5 timer");
+                }
+                else
+                {
+                    ReservationLength = value;
+                }
+            }
+        }
 
         public bool IsHandled { get; set; }
 
