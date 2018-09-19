@@ -21,7 +21,7 @@ namespace Rasmus.KlarupSportsBooking.Server
         /// </summary>
         public IPAddress ServerIpAddress { get; }
         public DataHandler handler = new DataHandler();
-        public List<string> validRequests = new List<string> { "CalculateCoveragePercentageByDateRange", "FindNextAvailableTime", "FindNextBookingByUnionName", "CalculateMostActiveUnionByDateRange" };
+        public List<string> validRequests = new List<string> { "CalculateCoveragePercentageByDateRange", "FindNextAvailableTime", "FindNextBookingByUnionName", "CalculateMostActiveUnionByDateRange", "Help", "Commands", "Command" };
         /// <summary>
         /// The constructor initializes the IP Address and the TcpListener.
         /// Uses either local IP Address, or the IPv4 Address of the computer.
@@ -56,14 +56,14 @@ namespace Rasmus.KlarupSportsBooking.Server
 
             while (true)
             {
-                try
+                using (TcpClient client = listener.AcceptTcpClient())
+                using (NetworkStream ns = client.GetStream())
+                using (StreamWriter writer = new StreamWriter(ns))
+                using (StreamReader reader = new StreamReader(ns))
                 {
-
-                    using (TcpClient client = listener.AcceptTcpClient())
-                    using (NetworkStream ns = client.GetStream())
-                    using (StreamWriter writer = new StreamWriter(ns))
-                    using (StreamReader reader = new StreamReader(ns))
+                    try
                     {
+
                         writer.AutoFlush = true;
 
                         string request = reader.ReadLine();
@@ -71,10 +71,11 @@ namespace Rasmus.KlarupSportsBooking.Server
 
                         writer.WriteLine(response);
                     }
-                }
-                catch (IOException ex)
-                {
-                    Console.WriteLine(ex.Message);
+                    catch (IOException ex)
+                    {
+                        writer.WriteLine(ex.Message);
+                        Console.WriteLine($"Exception: {ex.Message}");
+                    }
                 }
             }
         }
@@ -89,23 +90,34 @@ namespace Rasmus.KlarupSportsBooking.Server
             var splittedRequest = request.Split(',');
             bool isValid = VerifyRequest(splittedRequest);
             string response = "";
-
-            if (isValid)
+            try
             {
-
-                switch (splittedRequest[0])
+                if (isValid)
                 {
-                    case "CalculateCoveragePercentageByDateRange":
-                        response += Math.Round(handler.Reader.CalculateCoveragePercentageByDateRange(DateTime.Parse(splittedRequest[1]), DateTime.Parse(splittedRequest[2])), 2);
-                        break;
-                    default:
-                        response = "error,wrong method call";
-                        break;
+
+                    switch (splittedRequest[0])
+                    {
+                        case "CalculateCoveragePercentageByDateRange":
+                            response += Math.Round(handler.Reader.CalculateCoveragePercentageByDateRange(DateTime.Parse(splittedRequest[1]), DateTime.Parse(splittedRequest[2])), 2);
+                            break;
+                        case "CalculateMostActiveUnionByDateRange":
+                            Union union = handler.Reader.CalculateMostActiveUnionByDateRange(DateTime.Parse(splittedRequest[1]), DateTime.Parse(splittedRequest[2]));
+                            response += union.UnionName;
+                            break;
+                        default:
+                            response = "error,wrong method call";
+                            break;
+                    }
+                }
+                else
+                {
+                    response += "Error, request not valid";
                 }
             }
-            else
+            catch (Exception ex)
             {
-                response += "Error, request not valid";
+                Console.WriteLine($"Exception: {ex.Message}");
+                return ex.Message;
             }
             return response;
         }

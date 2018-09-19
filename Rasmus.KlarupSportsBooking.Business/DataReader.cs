@@ -162,12 +162,34 @@ namespace Rasmus.KlarupSportsBooking.Business
         /// <returns></returns>
         public List<DateTime> FindDatesInDateRange(DateTime startDate, DateTime endDate)
         {
+            if (endDate < startDate)
+            {
+                throw new ArgumentException("Slutdato må ikke være før startdato");
+            }
             List<DateTime> dateRange = new List<DateTime>();
             for (DateTime day = startDate; day.Date <= endDate.Date; day = day.AddDays(1))
             {
                 dateRange.Add(day);
             }
             return dateRange;
+        }
+
+        /// <summary>
+        /// Method to find the union that has made the most reservation in any given date range
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        public Union CalculateMostActiveUnionByDateRange(DateTime startDate, DateTime endDate)
+        {
+            List<DateTime> dates = FindDatesInDateRange(startDate, endDate);
+            List<Union> unions = DB.Unions.ToList();
+            foreach (Union union in unions)
+            {
+                union.Reservations = DB.Reservations.Where(r => r.Union.ID == union.ID && dates.Contains(r.Date)).ToList();
+            }
+            unions.OrderByDescending(u => u.Reservations.Count());
+            return unions[0];
         }
     }
 }
