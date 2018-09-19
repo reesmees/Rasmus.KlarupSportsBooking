@@ -31,6 +31,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Forening" Binding="{Binding Path=Reservation.Union.UnionName}"/>
                         <DataGridTextColumn Header="Aktivitet" Binding="{Binding Path=Reservation.Activity.ActivityName}"/>
+                        <DataGridTextColumn Header="Dato" Binding="{Binding Path=Reservation.Date, StringFormat=dd.MM.yy}"/>
                         <DataGridTextColumn Header="Pladsoptag" Binding="{Binding Path=Reservation.Activity.HallUsage}"/>
                         <DataGridTextColumn Header="Starttid" Binding="{Binding Path=StartTime}"/>
                         <DataGridTextColumn Header="Sluttid" Binding="{Binding Path=EndTime}"/>

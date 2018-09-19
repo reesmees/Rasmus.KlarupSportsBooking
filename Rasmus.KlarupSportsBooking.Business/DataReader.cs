@@ -141,7 +141,8 @@ namespace Rasmus.KlarupSportsBooking.Business
         {
             double unreservedMinutes = 0;
             double openMinutes = 0;
-            foreach (DateTime day in FindDatesInDateRange(startDate, endDate))
+            List<DateTime> dates = FindDatesInDateRange(startDate, endDate);
+            foreach (DateTime day in dates)
             {
                 openMinutes += CalculateTotalMinutesOpenByDay(day);
                 unreservedMinutes += CalculateNonBookedMinutesByDay(day);
@@ -162,7 +163,7 @@ namespace Rasmus.KlarupSportsBooking.Business
         public List<DateTime> FindDatesInDateRange(DateTime startDate, DateTime endDate)
         {
             List<DateTime> dateRange = new List<DateTime>();
-            for (DateTime day = startDate; day.Date < endDate.Date; day.AddDays(1))
+            for (DateTime day = startDate; day.Date <= endDate.Date; day = day.AddDays(1))
             {
                 dateRange.Add(day);
             }

@@ -129,16 +129,16 @@ namespace Rasmus.KlarupSportsBooking.GUI
                 else if (dpckEndDate.SelectedDate == null)
                 {
                     coveragePercent = handler.Reader.CalculateCoveragePercentageByDay((DateTime)dpckStartDate.SelectedDate);
-                    MessageBox.Show($"Belægningsprocenten på {dpckStartDate.SelectedDate} er {coveragePercent}%", "Resultat");
+                    MessageBox.Show($"Belægningsprocenten på {dpckStartDate.SelectedDate} er {Math.Round(coveragePercent,2)}%", "Resultat");
                 }
-                else if (dpckEndDate.SelectedDate < dpckStartDate.SelectedDate)
+                else if ((DateTime)dpckEndDate.SelectedDate < (DateTime)dpckStartDate.SelectedDate)
                 {
                     MessageBox.Show("Slutdato kan ikke være før startdato");
                 }
                 else
                 {
                     coveragePercent = handler.Reader.CalculateCoveragePercentageByDateRange((DateTime)dpckStartDate.SelectedDate, (DateTime)dpckEndDate.SelectedDate);
-                    MessageBox.Show($"Belægningsprocenten mellem {dpckStartDate.SelectedDate} og {dpckEndDate.SelectedDate} er {coveragePercent}%", "Resultat");
+                    MessageBox.Show($"Belægningsprocenten mellem {dpckStartDate.SelectedDate} og {dpckEndDate.SelectedDate} er {Math.Round(coveragePercent,2)}%", "Resultat");
                 }
             }
             catch (Exception ex)
