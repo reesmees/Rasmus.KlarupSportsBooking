@@ -128,17 +128,20 @@ namespace Rasmus.KlarupSportsBooking.GUI
                 }
                 else if (dpckEndDate.SelectedDate == null)
                 {
-                    coveragePercent = handler.Reader.CalculateCoveragePercentageByDay((DateTime)dpckStartDate.SelectedDate);
-                    MessageBox.Show($"Belægningsprocenten på {dpckStartDate.SelectedDate} er {Math.Round(coveragePercent,2)}%", "Resultat");
+                    DateTime startDate = (DateTime)dpckStartDate.SelectedDate;
+                    coveragePercent = handler.Reader.CalculateCoveragePercentageByDay(startDate);
+                    MessageBox.Show($"Belægningsprocenten på {startDate.ToShortDateString()} er {Math.Round(coveragePercent,2)}%", "Resultat");
                 }
-                else if ((DateTime)dpckEndDate.SelectedDate < (DateTime)dpckStartDate.SelectedDate)
+                else if (dpckEndDate.SelectedDate < dpckStartDate.SelectedDate)
                 {
                     MessageBox.Show("Slutdato kan ikke være før startdato");
                 }
                 else
                 {
-                    coveragePercent = handler.Reader.CalculateCoveragePercentageByDateRange((DateTime)dpckStartDate.SelectedDate, (DateTime)dpckEndDate.SelectedDate);
-                    MessageBox.Show($"Belægningsprocenten mellem {dpckStartDate.SelectedDate} og {dpckEndDate.SelectedDate} er {Math.Round(coveragePercent,2)}%", "Resultat");
+                    DateTime startDate = (DateTime)dpckStartDate.SelectedDate;
+                    DateTime endDate = (DateTime)dpckEndDate.SelectedDate;
+                    coveragePercent = handler.Reader.CalculateCoveragePercentageByDateRange(startDate, endDate);
+                    MessageBox.Show($"Belægningsprocenten mellem {startDate.ToShortDateString()} og {endDate.ToShortDateString()} er {Math.Round(coveragePercent,2)}%", "Resultat");
                 }
             }
             catch (Exception ex)

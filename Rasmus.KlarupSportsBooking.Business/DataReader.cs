@@ -71,7 +71,7 @@ namespace Rasmus.KlarupSportsBooking.Business
         /// <returns>The amount of minutes within operating hours on the given day, that are not booked</returns>
         public double CalculateNonBookedMinutesByDay(DateTime date)
         {
-            List<Booking> bookings = DB.Bookings.Where(b => DbFunctions.TruncateTime(b.Reservation.Date) == DbFunctions.TruncateTime(date)).OrderBy(b => b.StartTime).ToList();
+            List<Booking> bookings = DB.Bookings.Where(b => DbFunctions.TruncateTime(b.Reservation.Date) == DbFunctions.TruncateTime(date)).OrderBy(b => b.EndTime).OrderBy(b => b.StartTime).ToList();
             double unreservedMinutes = 0;
             TimeSpan openingTime;
             TimeSpan closingTime;

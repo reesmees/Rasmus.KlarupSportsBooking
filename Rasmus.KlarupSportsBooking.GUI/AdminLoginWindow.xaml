@@ -10,7 +10,7 @@
         <Label Content="E-mail:" HorizontalAlignment="Left" Margin="54,18,0,0" VerticalAlignment="Top" Width="58" HorizontalContentAlignment="Right"/>
         <Label Content="Kodeord:" HorizontalAlignment="Left" Margin="54,45,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbxEmail" HorizontalAlignment="Left" Height="23" Margin="117,18,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbxPassword" HorizontalAlignment="Left" Height="23" Margin="117,48,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="psbxPassword" HorizontalAlignment="Left" Height="23" Margin="117,48,0,0" Password="" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnLogin" Content="Log ind" HorizontalAlignment="Left" Margin="54,76,0,0" VerticalAlignment="Top" Width="183" Click="btnLogin_Click"/>
 
     </Grid>

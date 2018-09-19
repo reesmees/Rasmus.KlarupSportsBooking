@@ -33,15 +33,15 @@ namespace Rasmus.KlarupSportsBooking.GUI
         {
             try
             {
-                if (!handler.DB.Administrators.Any(a => a.E_mails.E_mailAddress == tbxEmail.Text && a.Password == tbxPassword.Text))
+                if (!handler.DB.Administrators.Any(a => a.E_mails.E_mailAddress == tbxEmail.Text && a.Password == psbxPassword.Password))
                 {
                     MessageBox.Show("Forkert e-mailadresse eller kodeord");
                     tbxEmail.Text = "";
-                    tbxPassword.Text = "";
+                    psbxPassword.Password = "";
                 }
                 else
                 {
-                    Administrator admin = handler.DB.Administrators.Where(a => a.E_mails.E_mailAddress == tbxEmail.Text && a.Password == tbxPassword.Text).SingleOrDefault();
+                    Administrator admin = handler.DB.Administrators.Where(a => a.E_mails.E_mailAddress == tbxEmail.Text && a.Password == psbxPassword.Password).SingleOrDefault();
                     AdminWindow adminWindow = new AdminWindow(handler, admin);
                     adminWindow.Show();
                     this.Close();

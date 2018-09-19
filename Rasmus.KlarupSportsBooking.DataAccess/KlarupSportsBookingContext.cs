@@ -91,9 +91,9 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
                 .HasForeignKey(e => e.E_mailID)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<RecurringReservation>()
-                .Property(e => e.Weekday)
-                .IsUnicode(false);
+            //modelBuilder.Entity<RecurringReservation>()
+            //    .Property(e => e.Weekday)
+            //    .IsUnicode(false);
 
             modelBuilder.Entity<RecurringReservation>()
                 .HasMany(e => e.RecurringBookings)
