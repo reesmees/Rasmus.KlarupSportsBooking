@@ -112,8 +112,8 @@ namespace Rasmus.KlarupSportsBooking.Business
         /// <summary>
         /// Method to calculate how many minutes the hall is open for on any given day
         /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
+        /// <param name="date">The date to find opening hours of</param>
+        /// <returns>The amount of minutes the hall is open for on the given day</returns>
         public double CalculateTotalMinutesOpenByDay(DateTime date)
         {
             TimeSpan openingTime;
@@ -134,9 +134,9 @@ namespace Rasmus.KlarupSportsBooking.Business
         /// <summary>
         /// Method to calculate the percentage of time between two dates that are booked
         /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        /// <returns></returns>
+        /// <param name="startDate">The inclusive start date to calculate on</param>
+        /// <param name="endDate">The inclusive end date to calculate on</param>
+        /// <returns>The percentage of time between the two given dates that is booked</returns>
         public double CalculateCoveragePercentageByDateRange(DateTime startDate, DateTime endDate)
         {
             double unreservedMinutes = 0;
@@ -156,10 +156,11 @@ namespace Rasmus.KlarupSportsBooking.Business
 
         /// <summary>
         /// Method to return a list of all days between two dates
+        /// Throws an argument exception if endDate is earlier than startDate
         /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        /// <returns></returns>
+        /// <param name="startDate">The inclusive start date to return in a list</param>
+        /// <param name="endDate">The inclusive end date to return in a list</param>
+        /// <returns>A list of dates including both startDate and endDate</returns>
         public List<DateTime> FindDatesInDateRange(DateTime startDate, DateTime endDate)
         {
             if (endDate < startDate)
@@ -177,9 +178,9 @@ namespace Rasmus.KlarupSportsBooking.Business
         /// <summary>
         /// Method to find the union that has made the most reservation in any given date range
         /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        /// <returns></returns>
+        /// <param name="startDate">The inclusive start date to count reservations from</param>
+        /// <param name="endDate">The inclusive end date to count reservations from</param>
+        /// <returns>The union that has made the most reservations between the two dates</returns>
         public Union CalculateMostActiveUnionByDateRange(DateTime startDate, DateTime endDate)
         {
             List<DateTime> dates = FindDatesInDateRange(startDate, endDate);

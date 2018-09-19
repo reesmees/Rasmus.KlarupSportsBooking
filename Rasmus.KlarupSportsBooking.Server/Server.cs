@@ -105,7 +105,7 @@ namespace Rasmus.KlarupSportsBooking.Server
                             response += union.UnionName;
                             break;
                         default:
-                            response = "error,wrong method call";
+                            response = "Request not yet implemented";
                             break;
                     }
                 }
