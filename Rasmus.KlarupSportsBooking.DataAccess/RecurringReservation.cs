@@ -27,6 +27,7 @@ namespace Rasmus.KlarupSportsBooking.DataAccess
         public DateTime EndDate { get; set; }
 
         [Required]
+        [Column(TypeName = "int")]
         public Weekday Weekday { get; set; }
 
         public TimeSpan StartTime { get; set; }

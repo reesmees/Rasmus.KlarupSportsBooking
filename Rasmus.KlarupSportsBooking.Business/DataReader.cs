@@ -56,9 +56,9 @@ namespace Rasmus.KlarupSportsBooking.Business
         /// <returns>The percentage of opening hours on the given day, that has been booked</returns>
         public double CalculateCoveragePercentageByDay(DateTime date)
         {
-            double unreservedMinutes = CalculateNonBookedMinutesByDay(date);
+            double nonBookedMinutes = CalculateNonBookedMinutesByDay(date);
             double openMinutes = CalculateTotalMinutesOpenByDay(date);
-            double reservedMinutes = openMinutes - unreservedMinutes;
+            double reservedMinutes = openMinutes - nonBookedMinutes;
             double reservedPercentage = reservedMinutes / openMinutes * 100;
 
             return reservedPercentage;
