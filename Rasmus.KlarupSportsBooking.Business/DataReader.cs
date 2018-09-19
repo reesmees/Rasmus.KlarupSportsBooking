@@ -97,14 +97,14 @@ namespace Rasmus.KlarupSportsBooking.Business
             else if (bookings.Count() > 1)
             {
                 unreservedMinutes += (bookings[0].StartTime - openingTime).TotalMinutes;
-                for (int i = 1; i < bookings.Count() - 1; i++)
+                for (int i = 1; i < bookings.Count(); i++)
                 {
                     if (bookings[i-1].EndTime < bookings[i].StartTime)
                     {
                         unreservedMinutes += (bookings[i].StartTime - bookings[i - 1].EndTime).TotalMinutes;
                     }
                 }
-                unreservedMinutes += (closingTime - bookings.Max().EndTime).TotalMinutes;
+                unreservedMinutes += (closingTime - bookings[bookings.Count() - 1].EndTime).TotalMinutes;
             }
             return unreservedMinutes;
         }
