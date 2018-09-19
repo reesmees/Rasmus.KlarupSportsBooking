@@ -127,7 +127,7 @@ namespace Rasmus.KlarupSportsBooking.GUI
                     MessageBox.Show("Vælg en startdato");
                 }
                 else if (dpckEndDate.SelectedDate == null)
-                {
+                { 
                     DateTime startDate = (DateTime)dpckStartDate.SelectedDate;
                     coveragePercent = handler.Reader.CalculateCoveragePercentageByDay(startDate);
                     MessageBox.Show($"Belægningsprocenten på {startDate.ToShortDateString()} er {Math.Round(coveragePercent,2)}%", "Resultat");
