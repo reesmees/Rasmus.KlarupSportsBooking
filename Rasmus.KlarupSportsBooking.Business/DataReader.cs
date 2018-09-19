@@ -189,8 +189,7 @@ namespace Rasmus.KlarupSportsBooking.Business
             {
                 union.Reservations = DB.Reservations.Where(r => r.Union.ID == union.ID && dates.Contains(r.Date)).ToList();
             }
-            unions.OrderByDescending(u => u.Reservations.Count());
-            return unions[0];
+            return unions.OrderByDescending(u => u.Reservations.Count()).FirstOrDefault();
         }
     }
 }

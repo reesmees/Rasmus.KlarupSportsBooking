@@ -63,6 +63,7 @@
     <Compile Include="Union.cs" />
     <Compile Include="UnionLeader.cs" />
     <Compile Include="UnionLogin.cs" />
+    <Compile Include="Weekday.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
